@@ -11,8 +11,9 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6;
-            color: #1f2937;
+            background-color: #f0f4f8; /* Un color de fondo más suave y claro */
+            color: #1a202c;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         .view-transition {
             transition: opacity 0.5s ease-in-out;
@@ -28,20 +29,20 @@
             left: 50%;
             width: 5px;
             height: 5px;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.4);
             opacity: 0;
             border-radius: 100%;
-            transform: scale(1, 1) translate(-50%);
+            transform: scale(1, 1) translate(-50%, -50%);
             transition: all 0.5s ease-out;
         }
         .bubble-btn:hover::after {
-            transform: scale(200, 200) translate(-50%);
+            transform: scale(200, 200) translate(-50%, -50%);
             opacity: 1;
         }
         .nav-btn.active {
             background-color: #2563eb;
             color: white;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
         }
         .star-rating {
             display: inline-block;
@@ -57,7 +58,8 @@
         }
         .star-rating label:before {
             content: '★';
-            font-size: 2em;
+            font-size: 2.5em; /* Estrellas más grandes */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
         .star-rating input:checked ~ label {
             color: #fcd34d;
@@ -71,16 +73,16 @@
 <body class="min-h-screen flex flex-col items-center p-4">
 
     <!-- Navbar de navegación -->
-    <nav class="w-full max-w-4xl bg-white rounded-xl shadow-lg p-4 mb-8 flex flex-col sm:flex-row justify-between items-center transition-all duration-300">
+    <nav class="w-full max-w-4xl bg-white rounded-3xl shadow-2xl p-4 mb-8 flex flex-col sm:flex-row justify-between items-center transition-all duration-300 transform hover:scale-[1.01] hover:shadow-3xl">
         <div class="text-center sm:text-left mb-4 sm:mb-0">
-            <h1 class="text-2xl font-extrabold text-gray-900 leading-tight">WayraLink</h1>
+            <h1 class="text-3xl font-extrabold text-blue-800 leading-tight tracking-wide">WayraLink</h1>
         </div>
         <div class="flex flex-wrap justify-center sm:justify-end items-center space-x-2 sm:space-x-4 space-y-2 sm:space-y-0 w-full sm:w-auto">
-            <button id="nav-services-btn" class="nav-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-xl font-bold hover:bg-gray-300 transition duration-300 transform hover:scale-105">Servicios</button>
-            <button id="nav-about-btn" class="nav-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-xl font-bold hover:bg-gray-300 transition duration-300 transform hover:scale-105">Sobre Nosotros</button>
-            <button id="nav-support-btn" class="nav-btn bg-gray-200 text-gray-800 px-4 py-2 rounded-xl font-bold hover:bg-gray-300 transition duration-300 transform hover:scale-105">Soporte</button>
-            <button id="add-profile-btn" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105 bubble-btn">AGREGAR PERFIL</button>
-            <button id="admin-panel-btn" class="bg-gray-500 text-white px-4 py-2 rounded-xl font-bold shadow-lg hover:bg-gray-600 transition duration-300 transform hover:scale-105 bubble-btn">ADMIN</button>
+            <button id="nav-services-btn" class="nav-btn bg-gray-200 text-gray-800 px-5 py-2.5 rounded-full font-bold hover:bg-gray-300 transition duration-300 transform hover:scale-105 shadow-md">Servicios</button>
+            <button id="nav-about-btn" class="nav-btn bg-gray-200 text-gray-800 px-5 py-2.5 rounded-full font-bold hover:bg-gray-300 transition duration-300 transform hover:scale-105 shadow-md">Sobre Nosotros</button>
+            <button id="nav-support-btn" class="nav-btn bg-gray-200 text-gray-800 px-5 py-2.5 rounded-full font-bold hover:bg-gray-300 transition duration-300 transform hover:scale-105 shadow-md">Soporte</button>
+            <button id="add-profile-btn" class="bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-2.5 rounded-full font-bold shadow-lg hover:from-blue-600 hover:to-blue-800 transition duration-300 transform hover:scale-105 bubble-btn">AGREGAR PERFIL</button>
+            <button id="admin-panel-btn" class="bg-gray-500 text-white px-5 py-2.5 rounded-full font-bold shadow-lg hover:bg-gray-600 transition duration-300 transform hover:scale-105 bubble-btn">ADMIN</button>
         </div>
         <div id="user-info-container" class="text-sm text-gray-500 w-full text-center mt-4 sm:mt-0 sm:w-auto sm:text-left">
             <span id="user-id-display">ID de usuario: Cargando...</span>
@@ -91,26 +93,26 @@
     <main id="main-content" class="w-full max-w-4xl">
 
         <!-- Vista de la lista de perfiles (pestaña 'Servicios') -->
-        <section id="profiles-view" class="view-transition bg-white rounded-xl shadow-lg p-6 mb-8">
-            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Perfiles de proveedores</h2>
+        <section id="profiles-view" class="view-transition bg-white rounded-3xl shadow-2xl p-6 mb-8 transform transition-transform duration-300 hover:scale-[1.005]">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Perfiles de proveedores</h2>
             <!-- Controles de búsqueda y filtro -->
             <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                <input type="text" id="search-input" placeholder="Buscar por nombre o servicio..." class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
-                <select id="category-filter" class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <input type="text" id="search-input" placeholder="Buscar por nombre o servicio..." class="flex-1 rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
+                <select id="category-filter" class="rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                     <option value="all">Todas las categorías</option>
                 </select>
-                <select id="subcategory-filter" class="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <select id="subcategory-filter" class="rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                     <option value="all">Todas las subcategorías</option>
                 </select>
             </div>
             <div class="flex flex-col sm:flex-row gap-4 mb-6">
-                 <select id="region-filter" class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                 <select id="region-filter" class="flex-1 rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                     <option value="all">Todas las Regiones</option>
                 </select>
-                <select id="province-filter" class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <select id="province-filter" class="flex-1 rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                     <option value="all">Todas las Provincias</option>
                 </select>
-                <select id="district-filter" class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                <select id="district-filter" class="flex-1 rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                     <option value="all">Todos los Distritos</option>
                 </select>
             </div>
@@ -127,30 +129,30 @@
         </section>
         
         <!-- Vista del formulario para agregar un nuevo perfil -->
-        <section id="add-profile-view" class="view-transition bg-white rounded-xl shadow-lg p-6 mb-8 hidden">
+        <section id="add-profile-view" class="view-transition bg-white rounded-3xl shadow-2xl p-6 mb-8 hidden transform transition-transform duration-300 hover:scale-[1.005]">
             <button id="back-to-profiles-btn" class="text-blue-600 hover:text-blue-800 transition duration-300 mb-4 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
                 Volver a la lista
             </button>
-            <h2 class="text-2xl font-semibold mb-2 text-gray-800">Promociona tus servicios</h2>
+            <h2 class="text-3xl font-bold mb-2 text-gray-800">Promociona tus servicios</h2>
             <p class="text-gray-600 mb-6">Completa el formulario para que tu perfil aparezca en la lista.</p>
             
             <form id="add-profile-form" class="space-y-4">
                 <div>
                     <label for="profile-name" class="block text-sm font-medium text-gray-700">Tu Nombre o Empresa</label>
-                    <input type="text" id="profile-name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <input type="text" id="profile-name" required class="mt-1 block w-full rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                 </div>
                 <div>
                     <label for="profile-category" class="block text-sm font-medium text-gray-700">Categoría del Servicio</label>
-                    <select id="profile-category" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <select id="profile-category" required class="mt-1 block w-full rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                         <option value="">Selecciona una categoría...</option>
                     </select>
                 </div>
                 <div>
                     <label for="profile-subcategory" class="block text-sm font-medium text-gray-700">Subcategoría del Servicio</label>
-                    <select id="profile-subcategory" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <select id="profile-subcategory" required class="mt-1 block w-full rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                         <option value="">Selecciona una subcategoría...</option>
                     </select>
                 </div>
@@ -161,17 +163,17 @@
                             Revisar Coherencia ✨
                         </button>
                     </div>
-                    <textarea id="profile-description" rows="3" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"></textarea>
+                    <textarea id="profile-description" rows="3" required class="mt-1 block w-full rounded-xl border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300"></textarea>
                 </div>
                  <div>
                     <label class="block text-sm font-medium text-gray-700">Ubicación</label>
-                    <select id="profile-region" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <select id="profile-region" required class="mt-1 block w-full rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                         <option value="">Selecciona una Región...</option>
                     </select>
-                    <select id="profile-province" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <select id="profile-province" required class="mt-1 block w-full rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                         <option value="">Selecciona una Provincia...</option>
                     </select>
-                    <select id="profile-district" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <select id="profile-district" required class="mt-1 block w-full rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                         <option value="">Selecciona un Distrito...</option>
                     </select>
                 </div>
@@ -180,7 +182,7 @@
                     <input type="file" id="profile-image" accept="image/*" class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"/>
                     <div id="image-preview" class="mt-2 hidden">
                         <p class="text-xs text-gray-500">Vista previa:</p>
-                        <img id="preview-image" src="#" alt="Vista previa de la imagen" class="mt-1 w-32 h-32 object-cover rounded-lg border border-gray-300">
+                        <img id="preview-image" src="#" alt="Vista previa de la imagen" class="mt-1 w-32 h-32 object-cover rounded-lg border border-gray-300 shadow-md">
                     </div>
                     <div id="upload-progress-container" class="w-full bg-gray-200 rounded-full h-2.5 mt-2 hidden">
                         <div id="upload-progress" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
@@ -188,10 +190,10 @@
                 </div>
                 <div>
                     <label for="profile-contact" class="block text-sm font-medium text-gray-700">Número de WhatsApp (ej. +51912345678)</label>
-                    <input type="tel" id="profile-contact" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50">
+                    <input type="tel" id="profile-contact" required class="mt-1 block w-full rounded-full border-gray-300 shadow-inner p-3 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 transition-all duration-300">
                 </div>
                 <div class="flex justify-end space-x-4 mt-6">
-                    <button type="submit" id="save-profile-btn" class="bg-green-600 text-white px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-green-700 transition duration-300 transform hover:scale-105 bubble-btn">
+                    <button type="submit" id="save-profile-btn" class="bg-gradient-to-r from-green-500 to-green-700 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:from-green-600 hover:to-green-800 transition duration-300 transform hover:scale-105 bubble-btn">
                         Guardar Perfil
                     </button>
                 </div>
@@ -202,14 +204,14 @@
         </section>
 
         <!-- Vista del panel de administración -->
-        <section id="admin-view" class="view-transition bg-white rounded-xl shadow-lg p-6 mb-8 hidden">
+        <section id="admin-view" class="view-transition bg-white rounded-3xl shadow-2xl p-6 mb-8 hidden transform transition-transform duration-300 hover:scale-[1.005]">
             <button id="back-to-profiles-from-admin-btn" class="text-blue-600 hover:text-blue-800 transition duration-300 mb-4 flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
                 </svg>
                 Volver a la lista
             </button>
-            <h2 class="text-2xl font-semibold mb-6 text-gray-800">Panel de Administración</h2>
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">Panel de Administración</h2>
             <div id="admin-profiles-list" class="space-y-4">
                 <!-- Los perfiles se insertarán aquí para gestión del administrador -->
             </div>
@@ -219,8 +221,8 @@
         </section>
 
         <!-- Nueva vista "Sobre Nosotros" -->
-        <section id="about-us-view" class="view-transition bg-white rounded-xl shadow-lg p-6 mb-8 hidden">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Sobre WayraLink</h2>
+        <section id="about-us-view" class="view-transition bg-white rounded-3xl shadow-2xl p-6 mb-8 hidden transform transition-transform duration-300 hover:scale-[1.005]">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Sobre WayraLink</h2>
             <p class="text-gray-600 leading-relaxed">
                 WayraLink es una plataforma diseñada para conectar a la comunidad con servicios locales de manera fácil y segura.
                 Nuestra misión es empoderar a los pequeños emprendedores y a los proveedores de servicios,
@@ -235,8 +237,8 @@
         </section>
 
         <!-- Nueva vista "Soporte" -->
-        <section id="support-view" class="view-transition bg-white rounded-xl shadow-lg p-6 mb-8 hidden">
-            <h2 class="text-2xl font-semibold mb-4 text-gray-800">Soporte y Contacto</h2>
+        <section id="support-view" class="view-transition bg-white rounded-3xl shadow-2xl p-6 mb-8 hidden transform transition-transform duration-300 hover:scale-[1.005]">
+            <h2 class="text-3xl font-bold mb-4 text-gray-800">Soporte y Contacto</h2>
             <p class="text-gray-600 leading-relaxed mb-4">
                 Si tienes alguna pregunta, sugerencia o necesitas ayuda, no dudes en contactarnos.
                 Estamos aquí para asistirte.
@@ -567,7 +569,7 @@
 
         function createProfileCard(profile, isAdmin = false) {
             const card = document.createElement('div');
-            card.className = 'bg-gray-100 rounded-lg p-4 shadow-md flex flex-col hover:shadow-xl transition-shadow duration-300';
+            card.className = 'bg-gray-100 rounded-xl p-6 shadow-md flex flex-col hover:shadow-xl transition-all duration-300 transform hover:scale-105';
             
             const profileImage = profile.imageURL || 'https://placehold.co/150x150/d1d5db/4b5563?text=Sin+Imagen';
             
@@ -576,19 +578,17 @@
             const starIcons = getStarIcons(ratingScore);
 
             card.innerHTML = `
-                <img src="${profileImage}" alt="Imagen de ${profile.name}" class="w-full h-40 object-cover rounded-lg mb-4">
-                <h3 class="text-lg font-bold text-gray-900">${profile.name}</h3>
-                <span class="text-sm font-semibold text-blue-600">${profile.category} - ${profile.subcategory}</span>
+                <img src="${profileImage}" alt="Imagen de ${profile.name}" class="w-full h-40 object-cover rounded-lg mb-4 shadow-sm">
+                <h3 class="text-2xl font-bold text-gray-900">${profile.name}</h3>
+                <span class="text-md font-semibold text-blue-600">${profile.category} - ${profile.subcategory}</span>
                 <span class="text-sm text-gray-500 mt-1">${profile.region}, ${profile.province}, ${profile.district}</span>
                 <p class="text-gray-700 mt-2 flex-grow">${profile.description}</p>
-                <a href="https://wa.me/${profile.contact}" target="_blank" class="text-green-600 hover:text-green-800 font-bold mt-4 flex items-center transition duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
-                    </svg>
-                    Contactar por WhatsApp
+                <a href="https://wa.me/${profile.contact}" target="_blank" class="bg-green-500 text-white px-4 py-2 mt-4 rounded-full font-bold shadow-md hover:bg-green-600 transition duration-300 flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>Contactar</span>
                 </a>
-                <div class="flex items-center mt-2 text-sm text-gray-600 space-x-2">
-                    <span class="star-rating text-lg flex items-center space-x-1">${starIcons}</span>
+                <div class="flex items-center mt-3 text-lg text-gray-600 space-x-2">
+                    <span class="star-rating text-xl flex items-center space-x-1">${starIcons}</span>
                     <span class="text-gray-700 font-semibold">${ratingScore.toFixed(1)}</span>
                     <span class="text-gray-500">(${ratingCount})</span>
                 </div>
@@ -600,7 +600,7 @@
                 
                 const deleteBtn = document.createElement('button');
                 deleteBtn.textContent = 'Eliminar';
-                deleteBtn.className = 'bg-red-500 text-white px-3 py-1 rounded-full text-sm hover:bg-red-600 transition-colors duration-300';
+                deleteBtn.className = 'bg-red-500 text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-red-600 transition-colors duration-300 shadow-md';
                 deleteBtn.onclick = () => showModal(
                     'Confirmar Eliminación',
                     '¿Estás seguro de que quieres eliminar este perfil? Esta acción es irreversible.',
@@ -613,7 +613,7 @@
             } else {
                  const rateBtn = document.createElement('button');
                 rateBtn.textContent = 'Calificar';
-                rateBtn.className = 'bg-yellow-500 text-white px-3 py-1 rounded-full text-sm hover:bg-yellow-600 transition-colors duration-300 mt-2';
+                rateBtn.className = 'bg-yellow-500 text-white px-4 py-2 rounded-full text-sm font-bold hover:bg-yellow-600 transition-colors duration-300 mt-2 shadow-md';
                 rateBtn.onclick = () => showModal(
                     `Calificar a ${profile.name}`,
                     `Por favor, califica este servicio.`,
