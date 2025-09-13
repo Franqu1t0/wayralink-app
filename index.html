@@ -277,6 +277,7 @@
         import { getFirestore, collection, onSnapshot, query, addDoc, doc, updateDoc, deleteDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
         import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
         
+        // Variables globales proporcionadas por el entorno.
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
         const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
@@ -848,6 +849,9 @@
 
         // Event Listeners
         window.onload = function() {
+            // Inicialización de la aplicación y autenticación.
+            // Se usa un bloque try-catch para manejar el caso en que la configuración de Firebase no esté disponible,
+            // lo que podría ocurrir fuera del entorno de Canvas.
             try {
                 const app = initializeApp(firebaseConfig);
                 auth = getAuth(app);
@@ -869,6 +873,7 @@
                         } catch (error) {
                             console.error("Error during authentication: ", error);
                             userIdDisplay.textContent = 'Error de autenticación';
+                            showModal('Error de Autenticación', 'No se pudo autenticar. Por favor, recarga la página.');
                         }
                     }
                 });
